@@ -1,24 +1,34 @@
 import React, { useEffect, useState } from 'react';
+import { Array, ArrayBar, ButtonContainer } from './styles/Sorting.styled';
+import resetArray from './sorting_logic/resetArray';
+import bubbleSort from './sorting_logic/bubbleSort';
+import mergeSort from './sorting_logic/mergeSort';
 
 const Sorting = () => {
-	const [visualArray, setVisualArray] = useState<Array<Number>>([
-		5, 2, 6, 4, 8,
-	]);
+	const [visualArray, setVisualArray] = useState<Array<number>>([]);
 
-	useEffect(() => {}, []);
-
-	const handleResetArray = () => {
-		console.log('reset');
-	};
+	useEffect(() => {
+		resetArray(setVisualArray);
+	}, []);
 
 	return (
 		<>
-			<div>
-				{visualArray.map((val, idx) => {
-					return <div key={idx}>{val}</div>;
+			<Array>
+				{visualArray.map((val: any, idx) => {
+					return <ArrayBar key={idx} style={{ height: val }}></ArrayBar>;
 				})}
-			</div>
-			<button onClick={() => handleResetArray()}>배열 초기화</button>
+			</Array>
+			<ButtonContainer>
+				<button onClick={() => resetArray(setVisualArray)}>
+					배열 초기화
+				</button>
+				<button onClick={() => bubbleSort(visualArray, setVisualArray)}>
+					Bubble Sort
+				</button>
+				<button onClick={() => mergeSort(visualArray, setVisualArray)}>
+					Merge Sort
+				</button>
+			</ButtonContainer>
 		</>
 	);
 };
