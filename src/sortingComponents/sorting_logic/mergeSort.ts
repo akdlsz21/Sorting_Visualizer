@@ -69,14 +69,13 @@ function mergeSort(
 ) {
 	const stateQueue: number[][] = [];
 	mergeSort_(arr, setVisualArray, l, r, stateQueue);
-	// console.log(stateQueue);
-	let timeOut = 22;
-	stateQueue.forEach((state) => {
-		// console.log(state);
+	let timeOut = 3;
+	stateQueue.forEach((state, index) => {
 		setTimeout(() => {
+			console.log(`IDX: ${index}`);
 			setVisualArray([...state]);
 		}, timeOut);
-		timeOut += 22;
+		timeOut += 3;
 	});
 	stateQueue.length = 0;
 }
