@@ -11,6 +11,10 @@ const Sorting = () => {
 		resetArray(setVisualArray);
 	}, []);
 
+	useEffect(() => {
+		console.log(visualArray);
+	}, [visualArray]);
+
 	return (
 		<>
 			<Array>

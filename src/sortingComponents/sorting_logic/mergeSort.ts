@@ -1,52 +1,84 @@
 function merge(
-	left: number[],
-	right: number[],
-	setVisualArray: React.Dispatch<React.SetStateAction<number[]>>
+	arr: number[],
+	start: number,
+	mid: number,
+	end: number,
+	stateQueue: number[][]
 ) {
-	let arr: any = [];
+	let start2 = mid + 1;
 
-	let timeout = 250;
-
-	while (left.length && right.length) {
-		if (left[0] < right[0]) {
-			arr.push(left.shift());
-		} else {
-			arr.push(right.shift());
-		}
-
-		setTimeout(() => {
-			setVisualArray(arr);
-		}, timeout);
-		timeout += 250;
-		console.log(arr);
+	// If the direct merge is already sorted
+	if (arr[mid] <= arr[start2]) {
+		return;
 	}
 
-	if (left !== null) arr.push(...right);
-	if (right !== null) arr.push(...left);
+	// Two pointers to maintain start
+	// of both arrays to merge
+	while (start <= mid && start2 <= end) {
+		// If element 1 is in right place
+		if (arr[start] <= arr[start2]) {
+			start++;
+		} else {
+			let value = arr[start2];
+			let index = start2;
 
-	return arr;
+			// Shift all the elements between element 1
+			// element 2, right by 1.
+			while (index !== start) {
+				arr[index] = arr[index - 1];
+				index--;
+				stateQueue.push([...arr]);
+			}
+			arr[start] = value;
+
+			// Update all the pointers
+			start++;
+			mid++;
+			start2++;
+		}
+	}
+}
+
+/* l is for left index and r is right index
+of the sub-array of arr to be sorted */
+function mergeSort_(
+	arr: number[] = [],
+	setVisualArray: React.Dispatch<React.SetStateAction<number[]>>,
+	l: number = 0,
+	r: number = arr.length - 1,
+	stateQueue: number[][]
+) {
+	if (l < r) {
+		// Same as (l + r) / 2, but avoids overflow
+		// for large l and r
+		let m = l + Math.floor((r - l) / 2);
+
+		// Sort first and second halves
+		mergeSort_(arr, setVisualArray, l, m, stateQueue);
+		mergeSort_(arr, setVisualArray, m + 1, r, stateQueue);
+
+		merge(arr, l, m, r, stateQueue);
+	}
 }
 
 function mergeSort(
-	array: number[],
-	setVisualArray: React.Dispatch<React.SetStateAction<number[]>>
-): any[] {
-	const half = Math.floor(array.length / 2);
-
-	// Base case or terminating case
-	if (array.length <= 1) return array;
-
-	// splice is an inplace method,
-	const left = array.splice(0, half);
-	const right = array;
-
-	const mergedLeft = mergeSort(left, setVisualArray); //[4]
-
-	const mergedRight = mergeSort(right, setVisualArray); // [2]
-
-	const mergedArray = merge(mergedLeft, mergedRight, setVisualArray);
-
-	return mergedArray;
+	arr: number[] = [],
+	setVisualArray: React.Dispatch<React.SetStateAction<number[]>>,
+	l: number = 0,
+	r: number = arr.length - 1
+) {
+	const stateQueue: number[][] = [];
+	mergeSort_(arr, setVisualArray, l, r, stateQueue);
+	// console.log(stateQueue);
+	let timeOut = 22;
+	stateQueue.forEach((state) => {
+		// console.log(state);
+		setTimeout(() => {
+			setVisualArray([...state]);
+		}, timeOut);
+		timeOut += 22;
+	});
+	stateQueue.length = 0;
 }
 
 export default mergeSort;
