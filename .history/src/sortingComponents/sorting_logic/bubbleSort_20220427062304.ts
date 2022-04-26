@@ -7,6 +7,8 @@ const bubbleSort = (
 
 	let count = 0;
 	for (let i = 0; i < array.length; i++) {
+		console.log(i);
+
 		for (let j = 0; j < array.length - i - 1; j++) {
 			if (array[j] > array[j + 1]) {
 				let temp = array[j];
@@ -18,6 +20,7 @@ const bubbleSort = (
 		}
 	}
 
+	console.log(count);
 	let timer = 50;
 	stateQueue.forEach((state, idx) => {
 		setTimeout(() => {
@@ -26,8 +29,6 @@ const bubbleSort = (
 		}, timer);
 		timer += 50;
 	});
-
-	stateQueue.length = 0;
 };
 
 export default bubbleSort;

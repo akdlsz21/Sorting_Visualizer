@@ -53,7 +53,7 @@ const partition = (
 			arr[j] = temp;
 			i++;
 			j--;
-			stateQueue.push([...arr]);
+			stateQueue.push(arr);
 		}
 	}
 

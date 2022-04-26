@@ -10,7 +10,7 @@ const quickSort = (
 
 	stateQueue.forEach((state, idx) => {
 		setTimeout(() => {
-			setVisualArray([...state]);
+			setVisualArray(state);
 		}, timer);
 		console.log('IDX: ', idx);
 		timer += 100;

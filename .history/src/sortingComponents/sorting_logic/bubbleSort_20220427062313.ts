@@ -18,6 +18,7 @@ const bubbleSort = (
 		}
 	}
 
+	console.log(count);
 	let timer = 50;
 	stateQueue.forEach((state, idx) => {
 		setTimeout(() => {
@@ -26,8 +27,6 @@ const bubbleSort = (
 		}, timer);
 		timer += 50;
 	});
-
-	stateQueue.length = 0;
 };
 
 export default bubbleSort;
