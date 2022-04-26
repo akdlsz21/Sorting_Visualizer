@@ -4,7 +4,7 @@ function randomIntFromInterval(min, max) {
 }
 function resetArray(setVisualArray) {
 	const array = [];
-	for (let i = 0; i < 30; i++) {
+	for (let i = 0; i < 100; i++) {
 		let num = randomIntFromInterval(5, 500);
 		array.push(num);
 	}

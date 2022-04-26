@@ -29,16 +29,7 @@ const Sorting = () => {
 				<button onClick={() => mergeSort(visualArray, setVisualArray)}>
 					Merge Sort
 				</button>
-				<button
-					onClick={() =>
-						quickSort(
-							visualArray,
-							0,
-							visualArray.length - 1,
-							setVisualArray
-						)
-					}
-				>
+				<button onClick={() => quickSort(visualArray, setVisualArray)}>
 					Quick Sort
 				</button>
 			</ButtonContainer>

@@ -3,7 +3,6 @@ import { Array, ArrayBar, ButtonContainer } from './styles/Sorting.styled';
 import resetArray from './sorting_logic/resetArray';
 import bubbleSort from './sorting_logic/bubbleSort';
 import mergeSort from './sorting_logic/mergeSort';
-import quickSort from './sorting_logic/quickSort';
 
 const Sorting = () => {
 	const [visualArray, setVisualArray] = useState<Array<number>>([]);
@@ -28,18 +27,6 @@ const Sorting = () => {
 				</button>
 				<button onClick={() => mergeSort(visualArray, setVisualArray)}>
 					Merge Sort
-				</button>
-				<button
-					onClick={() =>
-						quickSort(
-							visualArray,
-							0,
-							visualArray.length - 1,
-							setVisualArray
-						)
-					}
-				>
-					Quick Sort
 				</button>
 			</ButtonContainer>
 		</>
