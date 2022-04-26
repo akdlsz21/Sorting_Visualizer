@@ -5,32 +5,21 @@ const quickSort = (
 	setVisualArray: React.Dispatch<React.SetStateAction<number[]>>
 ) => {
 	const stateQueue: number[][] = [];
-	_quickSort(arr, left, right, setVisualArray, stateQueue);
-	let timer = 100;
+	let index: number;
+	if (arr.length > 1) {
+		index = partition(arr, left, right, stateQueue);
+		if (left < index - 1) quickSort(arr, left, index - 1, setVisualArray);
+		if (index < right) quickSort(arr, index, right, setVisualArray);
+	}
+
+	let timer = 200;
 
 	stateQueue.forEach((state) => {
 		setTimeout(() => {
 			setVisualArray([...state]);
 		}, timer);
-		timer += 100;
+		timer += 200;
 	});
-};
-
-const _quickSort = (
-	arr: number[],
-	left: number,
-	right: number,
-	setVisualArray: React.Dispatch<React.SetStateAction<number[]>>,
-	stateQueue: number[][]
-) => {
-	let index: number;
-	if (arr.length > 1) {
-		index = partition(arr, left, right, stateQueue);
-		if (left < index - 1)
-			_quickSort(arr, left, index - 1, setVisualArray, stateQueue);
-		if (index < right)
-			_quickSort(arr, index, right, setVisualArray, stateQueue);
-	}
 };
 
 const partition = (

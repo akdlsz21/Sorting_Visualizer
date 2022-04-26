@@ -6,13 +6,13 @@ const quickSort = (
 ) => {
 	const stateQueue: number[][] = [];
 	_quickSort(arr, left, right, setVisualArray, stateQueue);
-	let timer = 100;
+	let timer = 200;
 
 	stateQueue.forEach((state) => {
 		setTimeout(() => {
 			setVisualArray([...state]);
 		}, timer);
-		timer += 100;
+		timer += 200;
 	});
 };
 

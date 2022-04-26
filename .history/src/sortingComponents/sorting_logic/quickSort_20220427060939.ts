@@ -5,14 +5,14 @@ const quickSort = (
 	setVisualArray: React.Dispatch<React.SetStateAction<number[]>>
 ) => {
 	const stateQueue: number[][] = [];
-	_quickSort(arr, left, right, setVisualArray, stateQueue);
-	let timer = 100;
+	_quickSort(arr, left, right, setVisualArray);
+	let timer = 200;
 
 	stateQueue.forEach((state) => {
 		setTimeout(() => {
 			setVisualArray([...state]);
 		}, timer);
-		timer += 100;
+		timer += 200;
 	});
 };
 
